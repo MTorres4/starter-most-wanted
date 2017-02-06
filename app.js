@@ -1,3 +1,4 @@
+"Use strict";
 /*
   Build all of your functions for the application below.
 	Some functions have been stubbed out.

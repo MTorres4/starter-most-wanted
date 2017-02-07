@@ -5,17 +5,15 @@
 
 // app is the function called to start the entire application
 function app(people){
-  var searchType = promptFor("Do you know the name of the person you are looking for? \n Enter 'yes' or 'no'", yesNo);
+  var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo);
   switch(searchType){
     case 'yes':
+		var people = searchByName(people);
       // TODO: search by name
-	  var person = prompt("Please enter the first name and last name of the person you are looking for");
-	  return person;
       break;
     case 'no':
+		var people = searchByTraits(people);
       // TODO: search by traits
-	  var people = prompt("From the following options: id, gender, date of birth, spouse, occupation, \n height, weight, eye color, parents, please select up to (5) separated with commas to display all applicable matches:")
-	  return people;
       break;
     default:
       app(people); // restart app
@@ -25,39 +23,25 @@ function app(people){
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-	this.id;
-	this.firstName;
-	this.lastName;
-	this.gender;
-	this.dob;
-	this.height;
-	this.weight;
-	this.eyeColor;
-	this.occupation;
-	this.parents;
-	this.currentSpouse;
-	
+
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
   if(!person){
-    alert("Based on the criteria, we could not locate any individual that matches those traits, please try again for different search results.");
+    alert("Unfortunately, there was no one who matched those criteria, please try your search again.");
     return app(people); // restart
   }
 
-	var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? \n Type one of the three options above or type 'restart' to reset your search or 'quit' to exit the application.");
+	var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
 	switch(displayOption){
 		case "info":
 			// TODO: get person's info
-		var displayInfo = prompt("Found " + person.firstName + " " + person.lastName + " . Here is their 'info': " + person.id + " " + person.gender + " " + person.dob + " " + person.height + " " + person.weight + " " + person.eyeColor + " " + person.occupation + " . Type 'family' or 'descendants' for additional information or type 'restart' to search again  or 'quit' to exit the application.");
 			break;
 		case "family":
 			// TODO: get person's family
-		var displayFamily = prompt("Found " + person.firstName + " " + person.lastName + " . Here is their 'family': " + person.parents + " " + person.currentSpouse + ". Type 'info' or 'descendants' for additional information or type 'restart' to search again or 'quit' to exit the application.");
 			break;
 		case "descendants":
-			// TODO: get person's descendants NEED OPPOSITE OF PARENTS
-		var displayFamily = prompt("Found " + person.firstName + " " + person.lastName + " . Here are thier 'descendants': " + person.parents + ". Type 'info' or 'family' for additional information or type 'restart' to seach again or 'quit' to exit the application.");
+			// TODO: get person's descendants
 			break;
 		case "restart":
 			app(people); // restart
@@ -71,11 +55,20 @@ function mainMenu(person, people){
 
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
+  return firstName;
   var lastName = promptFor("What is the person's last name?", chars);
+  return lastName;
 
   // TODO: find the person using the name they entered
 
 }
+
+//function searchByTraits(people){
+	//up to 5
+	//var  
+
+
+
 
 // alerts a list of people
 function displayPeople(people){

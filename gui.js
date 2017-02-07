@@ -1,4 +1,5 @@
 "use strict";
+//arrays use numbered indexes. objects use named indexes. 
 /*
   Build all of your functions for displaying and gathering information below (GUI).
 */
@@ -12,6 +13,7 @@ function app(people){
       // TODO: search by name
       break;
     case 'no':
+		no = alert("The following prompts will ask if you know any information from the following traits: age, height, weight, occupation, and/or eye color. At least one trait should be entered, if all 5 prompts are passed, the search will return to the beginning of the application.");
 		var people = searchByTraits(people);
       // TODO: search by traits
       break;
@@ -59,16 +61,46 @@ function searchByName(people){
   var lastName = promptFor("What is the person's last name?", chars);
   return lastName;
 
-  // TODO: find the person using the name they entered
+  // TODO: find matches using the name they entered
 
 }
 
-//function searchByTraits(people){
-	//up to 5
-	//var  
-
-
-
+function searchByTraits(people){//no matter what it will be 5 items: age, false, weight, false, false
+	var 'pass' = false;
+	var traitAge = promptFor("If you know the person's age, please type thier age as a number, if not, please type 'pass'");
+		if (traitAge = traitAgeNumber){//save to array
+			return traitAge;
+		}if else (traitAge = 'pass'){ //goto traitHeight
+			return false;
+	var traitHeight = promptFor("If you know the person's height, please type their height (inches) as a number, if not, please type 'pass'");
+		}if (traitHeight = 0){//save to array
+			return traitHeight;
+		}if else (traitHeight = 'pass'){ //save to array
+			return false;
+	var traitWeight = promptFor("If you know the person's weight, please type their weight (pounds) as a number, if not, please type 'pass'");
+		}if (traitWeight = 0){//save to array
+			return traitWeight;
+		}if else (traitWeight = 'pass'){ //goto traitOccupation
+			return false;
+	var traitOccupation = promptFor("If you know the person's occupation, please type their occupation, if not, please type 'pass'");
+		}if (traitOccupation = 0){//save to array
+			return traitOccupation;
+		}if else (traitOccupation = 'pass'){ //goto traitEyecolor
+			return false;
+	var traitEyecolor = promptFor("If you know the person's eye color, please type their eye color, if not please type 'pass'");
+		}if (traitEyecolor = 0){//save to array
+			return traitEyecolor;
+		}if else (traitEyecolor = 'pass'){ //goto enter5Pass
+			return enter5Pass;
+	}
+}
+	
+	
+function enter5Pass(){
+	default: 
+	app(people);
+	break;
+}
 
 // alerts a list of people
 function displayPeople(people){
@@ -86,10 +118,36 @@ function displayPerson(person){
   alert(personInfo);
 }
 
+function traitAgeNumber(input){
+	return input.isInteger && input > 0(traitAge);
+	//if not, restart the Age prompt
+}
+
+function traitHeightNumber(input){
+	return input.isInteger && input > 0(traitHeight);
+	//if not, restart the Height prompt
+}
+
+function traitWeightNumber(input){
+	return input.isInteger && input > 0(traitWeight);
+	//if not, restart the Weight prompt
+}
+
+function traitOccupationString(input){
+	return input.toString.toLowerCase();
+	//if not, restart the Occupation prompt
+}
+
+function traitEyeColorString(input){
+	return input.toString.toLowerCase();
+	//if not, restart the Eye Color prompt
+}
+	
+
 // function that prompts and validates user input
 function promptFor(question, valid){
   do{
-    var response = prompt(question);
+    var response = prompt(question).trim();
   } while(!response || !valid(response));
   return response;
 }
@@ -101,5 +159,5 @@ function yesNo(input){
 
 // helper function to pass in as default promptFor validation
 function chars(input){
-  return false; // default validation only
+  return true; // default validation only
 }

@@ -14,7 +14,7 @@ function filterByName(firstName, lastName, people, data){
 		return true;
 	} else {
 		return false;
-	this.display = function(){
+	this.display = displayPeople(people){
 		return("Name: " + this.firstName + " " + this.lastName + "");
 	// return an aray containing the people matching the name
 	}
@@ -41,3 +41,9 @@ function convertToAge(person, people, data, dob){
 	var data;
 	this.dob
 } //TODO need to convert dob to age use MAP
+
+function filterTraitSearch (age, height, weight, occupation, eye color, pass)
+	filter
+}
+
+

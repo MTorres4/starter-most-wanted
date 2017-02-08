@@ -33,7 +33,7 @@ function mainMenu(person, people){
    // return app(people); // restart
  // }
 
-var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Type: 'info', 'family', or 'descendants' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
+var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Type: 'info', 'family', or 'descendants' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.").toLowerCase();
 
 	switch(displayOption){
 		case "info":
@@ -51,9 +51,12 @@ var displayOption = prompt("Found " + person.firstName + " " + person.lastName +
 		case "quit":
 			return; // stop execution
 		default:
+			alert("Apologies, invalid entry. Please check spelling and type from one of the following five options.");
 			return mainMenu(person, people); // ask again
 	}
 }
+var TestRun = mainMenu(data[0], data);
+console.log(TestRun);
 
 //function searchByName(people){
   //var firstName = promptFor("What is the person's first name?", chars);
@@ -148,10 +151,10 @@ var displayOption = prompt("Found " + person.firstName + " " + person.lastName +
 
 // function that prompts and validates user input
 //function promptFor(question, valid){
-  //do{
-    //var response = prompt(question).trim();
-  //} while(!response || !valid(response));
-  //return response;
+//	do{
+//    var response = prompt(question).trim();
+//  } while(!response || !valid(response));
+//  return response;
 //}
 
 // helper function to pass into promptFor to validate yes/no answers
@@ -159,7 +162,8 @@ var displayOption = prompt("Found " + person.firstName + " " + person.lastName +
   //return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
 //}
 
+
 // helper function to pass in as default promptFor validation
 //function chars(input){
-  //return true; // default validation only
+//  return true; // default validation only
 //}

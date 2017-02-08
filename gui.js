@@ -9,7 +9,8 @@ function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
 	case 'yes':
-		var people = searchByName(people);
+		var filterPersons = searchByName(people);
+		mainMenu(filterPersons, people);
       // TODO: search by name
       break;
     case 'no':
@@ -24,17 +25,18 @@ function app(people){
 }
 
 // Menu function to call once you find who you are looking for
-//function mainMenu(person, people){
+function mainMenu(filterPersons, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
-	//if(!person){
-	// alert("Unfortunately, there was no one who matched those criteria, please try your search again.");
-	// return app(people); // restart
- //}
-
-		//var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Type: 'info', 'family', or 'descendants' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.").toLowerCase();
-
+	if(filterPersons.length === 0){
+	alert("Unfortunately, there was no one who matched those criteria, please try your search again.");
+	return app(people); // restart
+	}else if(filterPersons.length > 1){
+	 displayPeople(filterPersons);
+	}else {
+	var displayOption = prompt("Found " + filterPersons[0].firstName + " " + filterPersons[0].lastName + " . Type: 'info', 'family', or 'descendants' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
+	}
 	//switch(displayOption){
 		//case "info":
 			//TODO: get person's info
@@ -54,17 +56,19 @@ function app(people){
 		//	alert("Apologies, invalid entry. Please check spelling and type from one of the following five options.");
 		//	return mainMenu(person, people); // ask again
 	//}
-//}
+}
 //var TestRun = mainMenu(data[0], data);
 //console.log(TestRun);
 
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
-  return (firstName + " " + lastName).toLowerCase();
+  var results = compareByName(firstName, lastName, people);
+  return results;
 
-  // TODO: find matches using the name the user entered
 }
+  // TODO: find matches using the name the user entered
+
 
 //function searchByTraits(people){//no matter what it will be 5 items: age, false, weight, false, false then take the true to be evaluated
 	//var 'pass' = false;
@@ -104,9 +108,9 @@ function searchByName(people){
 //}
 
 // alerts a list of people
-function displayPeople(people){
-  alert(people.map(function(person){
-    return person.firstName + " " + person.lastName;
+function displayPeople(filterPersons){
+  alert(people.map(function(filterPersons){
+    return filterPersons.firstName + " " + filterPersons.lastName;
   }).join("\n"));
 }
 
@@ -149,20 +153,20 @@ function displayPeople(people){
 //}
 
 // function that prompts and validates user input
-//function promptFor(question, valid){
-//	do{
-//    var response = prompt(question).trim();
-//  } while(!response || !valid(response));
-//  return response;
-//}
+function promptFor(question, valid){
+	do{
+    var response = prompt(question).trim();
+  } while(!response || !valid(response));
+  return response;
+}
 
 // helper function to pass into promptFor to validate yes/no answers
-//function yesNo(input){
-  //return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
-//}
+function yesNo(input){
+  return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
+}
 
 
 // helper function to pass in as default promptFor validation
-//function chars(input){
-//  return true; // default validation only
-//}
+function chars(input){
+  return true; // default validation only
+}

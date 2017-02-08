@@ -4,11 +4,11 @@
 	Some functions have been stubbed out.
 */
 
-function filterByName(firstName, lastName, people){
-	var results = people.filter(function (el)){
+function compareByName(firstName, lastName, people){
+	var results = people.filter(function (el){
 		return (firstName === el.firstName && lastName === el.lastName);
-	}
-	return results[0];
+	});
+	return results;
 }
 
 //function getFamily(person, people, data){

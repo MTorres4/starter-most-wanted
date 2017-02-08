@@ -5,67 +5,66 @@
 */
 
 // app is the function called to start the entire application
-//function app(people){
- // var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
-  //switch(searchType){
-    //case 'yes':
-		//var people = searchByName(people);
+function app(people){
+  var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
+  switch(searchType){
+	case 'yes':
+		var people = searchByName(people);
       // TODO: search by name
-     // break;
-    //case 'no':
-		//alert("The following prompts will ask if you know any information regarding the person from the following traits: age, height, weight, occupation, and/or eye color. At least one trait should be entered, or the search will return to the beginning of the application.");
-		//var people = searchByTraits(people);
+      break;
+    case 'no':
+		alert("The following prompts will ask if you know any information regarding the person from the following traits: age, height, weight, occupation, and/or eye color. At least one trait should be entered, or the search will return to the beginning of the application.");
+		var people = searchByTraits(people);
       // TODO: search by traits
-      //break;
-    //default:
-      //app(people); // restart app
-      //break;
-  //}
-//}
+      break;
+    default:
+      app(people); // restart app
+      break;
+  }
+}
 
 // Menu function to call once you find who you are looking for
-function mainMenu(person, people){
+//function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
- //if(!person){
-  //  alert("Unfortunately, there was no one who matched those criteria, please try your search again.");
-   // return app(people); // restart
- // }
+	//if(!person){
+	// alert("Unfortunately, there was no one who matched those criteria, please try your search again.");
+	// return app(people); // restart
+ //}
 
-var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Type: 'info', 'family', or 'descendants' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.").toLowerCase();
+		//var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Type: 'info', 'family', or 'descendants' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.").toLowerCase();
 
-	switch(displayOption){
-		case "info":
+	//switch(displayOption){
+		//case "info":
 			//TODO: get person's info
-			break;
-		case "family":
+		//	break;
+		//case "family":
 			//TODO: get person's family
-			break;
-		case "descendants":
+		//	break;
+		//case "descendants":
 			// TODO: get person's descendants
-			break;
-		case "restart":
-			app(people); // restart
-			break;
-		case "quit":
-			return; // stop execution
-		default:
-			alert("Apologies, invalid entry. Please check spelling and type from one of the following five options.");
-			return mainMenu(person, people); // ask again
-	}
-}
-var TestRun = mainMenu(data[0], data);
-console.log(TestRun);
+		//	break;
+		//case "restart":
+		//	app(people); // restart
+		//	break;
+		//case "quit":
+		//	return; // stop execution
+		//default:
+		//	alert("Apologies, invalid entry. Please check spelling and type from one of the following five options.");
+		//	return mainMenu(person, people); // ask again
+	//}
+//}
+//var TestRun = mainMenu(data[0], data);
+//console.log(TestRun);
 
-//function searchByName(people){
-  //var firstName = promptFor("What is the person's first name?", chars);
-  //var lastName = promptFor("What is the person's last name?", chars);
-  //return (firstName + " " + lastName);
+function searchByName(people){
+  var firstName = promptFor("What is the person's first name?", chars);
+  var lastName = promptFor("What is the person's last name?", chars);
+  return (firstName + " " + lastName).toLowerCase();
 
   // TODO: find matches using the name the user entered
-
-//}
+}
 
 //function searchByTraits(people){//no matter what it will be 5 items: age, false, weight, false, false then take the true to be evaluated
 	//var 'pass' = false;
@@ -105,11 +104,11 @@ console.log(TestRun);
 //}
 
 // alerts a list of people
-//function displayPeople(people){
-  //alert(people.map(function(person){
-    //return person.firstName + " " + person.lastName;
-  //}).join("\n"));
-//}
+function displayPeople(people){
+  alert(people.map(function(person){
+    return person.firstName + " " + person.lastName;
+  }).join("\n"));
+}
 
 //function displayPerson(person){
   // print all of the information about a person:

@@ -4,21 +4,12 @@
 	Some functions have been stubbed out.
 */
 
-//function filterByName(firstName, lastName, people, data){
-	//var data;
-	//this.firstName;
-	//this.lastName;
-	//if (value === firstName){
-	//	return true;
-	//}if (value === lastName){
-	//	return true;
-	//} else {
-	//	return false;
-	//this.display = displayPeople(people){
-	//	return("Name: " + this.firstName + " " + this.lastName + "");
-	// return an aray containing the people matching the name
-	//}
-//}
+function filterByName(firstName, lastName, people){
+	var results = people.filter(function (el)){
+		return (firstName === el.firstName && lastName === el.lastName);
+	}
+	return results[0];
+}
 
 //function getFamily(person, people, data){
 	//this.parents;

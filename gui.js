@@ -39,7 +39,7 @@ function mainMenu(filterPersons, people){
 	}
 	switch(displayOption){
 		case "info":
-			var personsInfo = displayPersonInfo(getInfo().convertToAge(filterPersons));
+			displayPersonInfo(filterPersons);
 			//TODO: get person's info
 			break;
 		case "family":
@@ -116,10 +116,28 @@ function displayPeople(filterPersons){
 function displayPersonInfo(filterPersons){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
+  var age = convertToAge(filterPersons);
   var personInfo = "First Name: " + filterPersons[0].firstName + "\n";
   personInfo += "Last Name: " + filterPersons[0].lastName + "\n";
+  personInfo += "Height: " + filterPersons[0].height + " inches \n";
+  personInfo += "Weight: " + filterPersons[0].weight +  "  pounds \n";
+  personInfo += "Age: " + age + "\n";
+  personInfo += "Occupation: " + filterPersons[0].occupation + "\n";
+  personInfo += "Eye Color: " + filterPersons[0].eyeColor + "\n";
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
+}
+
+function displayPersonDescendants(){
+	if (anyMatch > 1){
+		var descendants = findDescendants(filterPersons, people);
+		var personDescendants = "First Name: " + filterPersons[].firstName + "\n";
+		personDescendants = "First Name: " + filterPersons[].firstName + "\n";
+		alert(personDescendants);
+	} else (anyMatch === 0){
+		alert("The search yielded no results, please try your search again");
+		return mainMenu(filterPersons, people);
+	}
 }
 
 //function traitAgeNumber(input){

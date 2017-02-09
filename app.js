@@ -11,7 +11,15 @@ function compareByName(firstName, lastName, people){
 	return results;
 }
 
-//function getFamily(person, people, data){
+function getInfo(filterPersons, people){
+	var info = people.filter(function (el){
+		return (el.firstName && el.lastName && el.height && el.weight && el.dob && el.occupation && el.eyeColor);
+	});
+	return info;
+}
+
+
+//function getFamily(person, people){
 	//this.parents;
 	//this.currentSpouse;
 	//this.display = function(){
@@ -20,7 +28,7 @@ function compareByName(firstName, lastName, people){
 	//}
 //}
 
-//function getDescendants(person, people, data){
+//function getDescendants(person, people){
 	//this.parents;
 	//this.display = function() {
 		//return("Descendants: " + this.parents + "");
@@ -28,10 +36,17 @@ function compareByName(firstName, lastName, people){
 	// return an array containing the descendants (objects)
 //}
 
-//function convertToAge(person, people, data, dob){
-//	var data;
-	//this.dob
-//} //TODO need to convert dob to age use MAP
+function convertToAge(dob, people){
+	var age = people.map(function (el){
+		var todayDate = Date();
+		var toAge = Date(dob);
+		var age = todayDate.getFullYear() - toAge.getFullYear();
+		var m= todayDate.getMonth() - toAge.getMonth();
+		return Math.abs(m < 0 || (m === 0 && todayDate.getDate() < toAge.getDate()))
+	});	
+		return age;
+}
+ //TODO need to convert dob to age use MAP
 
 //function filterTraitSearch (age, height, weight, occupation, eye color, pass)
 //	filter

@@ -30,35 +30,34 @@ function mainMenu(filterPersons, people){
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
 	if(filterPersons.length === 0){
-	alert("Unfortunately, there was no one who matched those criteria, please try your search again.");
-	return app(people); // restart
+		alert("Unfortunately, there was no one who matched those criteria, please try your search again.");
+		return app(people); // restart
 	}else if(filterPersons.length > 1){
-	 displayPeople(filterPersons);
+		displayPeople(filterPersons);
 	}else {
-	var displayOption = prompt("Found " + filterPersons[0].firstName + " " + filterPersons[0].lastName + " . Type: 'info', 'family', or 'descendants' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
+		var displayOption = prompt("Found " + filterPersons[0].firstName + " " + filterPersons[0].lastName + " . Type: 'info', 'family', or 'descendants' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
 	}
-	//switch(displayOption){
-		//case "info":
+	switch(displayOption){
+		case "info":
+			var personsInfo = displayPersonInfo(getInfo().convertToAge(filterPersons));
 			//TODO: get person's info
-		//	break;
-		//case "family":
+			break;
+		case "family":
 			//TODO: get person's family
-		//	break;
-		//case "descendants":
+			break;
+		case "descendants":
 			// TODO: get person's descendants
-		//	break;
-		//case "restart":
-		//	app(people); // restart
-		//	break;
-		//case "quit":
-		//	return; // stop execution
-		//default:
-		//	alert("Apologies, invalid entry. Please check spelling and type from one of the following five options.");
-		//	return mainMenu(person, people); // ask again
-	//}
+			break;
+		case "restart":
+			app(people); // restart
+			break;
+		case "quit":
+			return; // stop execution
+		default:
+			alert("Apologies, invalid entry. Please check spelling and type from one of the following five options.");
+			return mainMenu(filterPersons, people); // ask again
+	}
 }
-//var TestRun = mainMenu(data[0], data);
-//console.log(TestRun);
 
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
@@ -114,14 +113,14 @@ function displayPeople(filterPersons){
   }).join("\n"));
 }
 
-//function displayPerson(person){
+function displayPersonInfo(filterPersons){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
-  //var personInfo = "First Name: " + person.firstName + "\n";
-  //personInfo += "Last Name: " + person.lastName + "\n";
+  var personInfo = "First Name: " + filterPersons[0].firstName + "\n";
+  personInfo += "Last Name: " + filterPersons[0].lastName + "\n";
   // TODO: finish getting the rest of the information to display
-  //alert(personInfo);
-//}
+  alert(personInfo);
+}
 
 //function traitAgeNumber(input){
 	//if (input.isInteger && input > 0(traitAge)){

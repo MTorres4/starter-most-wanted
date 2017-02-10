@@ -31,23 +31,33 @@ function displayPeople(filterPersons){
 }
 
 function convertToAge(onePerson){
-	var age = onePerson.map(function (el){
-		var today = new Date();
-		var toAge = new Date(el.dob);
-		var age = today.getFullYear() - toAge.getFullYear();
-		return Math.abs(today.getFullYear() - toAge.getFullYear(el.dob));
-	});	
+	var age = onePerson
+	var today = new Date();
+	var toAge = new Date(onePerson.dob);
+	if (age = today.getFullYear() - toAge.getFullYear()){
+	return Math.abs(today.getFullYear() - toAge.getFullYear(onePerson.dob));
+	}
 		return age;
 }
 
-function findDescendants(filterPersons, people){
+function findDescendants(onePerson, people){
 	var descendants = people.filter(function (el){
-		if(el.parents.includes(filterPersons[0].id)){
+		if(el.parents(onePerson.id)){
 			return true;
 		}else {
 			return false;
 		}
-	});
+	})
+}
+
+function convertToDescendants(people){
+	var displayString = "";
+	for(var i = 0; i < people.length; i++){
+	displayString += ""+i + people[i].firstName + "\n";
+	displayString += ""+i + people[i].lastName + "\n";
+	displayString += ""+i + people[i].dob + "\n";
+	}
+	return displayString;
 }
 
 //function filterTraitSearch (age, height, weight, occupation, eye color, pass)

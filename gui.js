@@ -33,11 +33,11 @@ function mainMenu(onePerson, people){
 		var filterPersons = onePerson;
 		var onePerson = selectingOnePerson(filterPersons);
 		var displayOption = prompt("Found " + onePerson.firstName + " " + onePerson.lastName + " . Type: 'info', 'descendants', or 'family' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
-	}else (onePerson.length === 1);{//is it because the person goes to 1???
+	}else{
 		var displayOption = prompt("Found " + onePerson[0].firstName + " " + onePerson[0].lastName + " . Type: 'info', 'descendants', or 'family' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
 	}switch(displayOption){
 		case "info":
-			displayPersonInfo(filterPersons);
+			displayPersonInfo(onePerson);
 			//TODO: get person's info
 			break;
 		case "family":
@@ -119,26 +119,25 @@ function displayPersonInfo(onePerson){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
   var age = convertToAge(onePerson);
-  var personInfo = "First Name: " + onePerson[0].firstName + "\n";
-  personInfo += "Last Name: " + onePerson[0].lastName + "\n";
-  personInfo += "Height: " + onePerson[0].height + " inches \n";
-  personInfo += "Weight: " + onePerson[0].weight +  "  pounds \n";
+  var personInfo = "First Name: " + onePerson.firstName + "\n";
+  personInfo += "Last Name: " + onePerson.lastName + "\n";
+  personInfo += "Height: " + onePerson.height + " inches \n";
+  personInfo += "Weight: " + onePerson.weight +  "  pounds \n";
   personInfo += "Age: " + age + "\n";
-  personInfo += "Occupation: " + onePerson[0].occupation + "\n";
-  personInfo += "Eye Color: " + onePerson[0].eyeColor + "\n";
+  personInfo += "Occupation: " + onePerson.occupation + "\n";
+  personInfo += "Eye Color: " + onePerson.eyeColor + "\n";
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
 
 function displayPersonDescendants(onePerson, people){
 	var descendants = findDescendants(onePerson, people);
-	if(descendants.length > 0){
-		var personDescendants = "First Name: " + [].firstName + "\n";
-		personDescendants = "Last Name: " + [].lastName + "\n";
-		alert(personDescendants);
-	} else(descendants.length === 0);{
+	if (descendants === true){
+	var listDescendants = convertToDescendants(people);
+		alert(listDescendants);
+	} else{
 		alert("The search yielded no results, please try your search again");
-		return mainMenu(onePerson, people);
+		return app(people);
 	}
 }
 

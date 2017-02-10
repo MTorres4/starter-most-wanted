@@ -16,6 +16,7 @@ var data = [
 	{
 		"firstName": "Billy",
 		"lastName": "Bob",
+		"parents": [],
 		"dob": "2/26/1987",
 	},
 	{

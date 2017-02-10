@@ -132,8 +132,8 @@ function displayPersonInfo(onePerson){
 
 function displayPersonDescendants(onePerson, people){
 	var descendants = findDescendants(onePerson, people);
-	if (descendants === true){
-	var listDescendants = convertToDescendants(people);
+	if (descendants){
+	var listDescendants = convertToDescendants(descendants);
 		alert(listDescendants);
 	} else{
 		alert("The search yielded no results, please try your search again");

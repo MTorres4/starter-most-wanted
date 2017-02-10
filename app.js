@@ -42,20 +42,21 @@ function convertToAge(onePerson){
 
 function findDescendants(onePerson, people){
 	var descendants = people.filter(function (el){
-		if(el.parents(onePerson.id)){
+		if(el.parents.includes(onePerson[0].id)){
 			return true;
 		}else {
 			return false;
 		}
-	})
+	});
+	return descendants;
 }
 
-function convertToDescendants(people){
+function convertToDescendants(descendants){
 	var displayString = "";
-	for(var i = 0; i < people.length; i++){
-	displayString += ""+i + people[i].firstName + "\n";
-	displayString += ""+i + people[i].lastName + "\n";
-	displayString += ""+i + people[i].dob + "\n";
+	for(var i = 0; i < descendants.length; i++){
+	displayString += ""+i + descendants[i].firstName + "\n";
+	displayString += ""+i + descendants[i].lastName + "\n";
+	displayString += ""+i + descendants[i].dob + "\n";
 	}
 	return displayString;
 }

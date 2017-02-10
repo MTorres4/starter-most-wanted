@@ -61,6 +61,50 @@ function convertToDescendants(descendants){
 	return displayString;
 }
 
+function findKids (onePerson, people){
+	var kids = people.filter(function (el){
+		if(el.parents.includes(onePerson[0].id)){
+			return true;
+		}else {
+			return false;
+		}		
+	});
+	return kids;
+}
+			
+function convertToKids (kids){
+	var displayString = "";
+	for(var i=0; i < kids.length; i++){
+	displayString += ""+i + kids[i].firstName + "\n";
+	displayString += ""+i + kids[i].lastName + "\n";
+	displayString += ""+i + kids[i].dob + "\n";
+	}
+	return displayString;
+}
+
+function findSpouse (onePerson, people){
+	var spouse = people.filter(function (el){
+		//if(el.currentSpouse.includes(onePerson[0].currentSpouse)){
+		if(onePerson[0].currentSpouse === el.id && el.currentSpouse === onePerson[0].id){
+			return true;
+		}else {
+			return false;
+		}
+	});
+	return spouse;
+}
+
+function convertToSpouse (spouse){
+	var displayString = "";
+	for(var i=0; i < spouse.length; i++){
+	displayString += ""+i + spouse[i].firstName + "\n";
+	displayString += ""+i + spouse[i].lastName + "\n";
+	displayString += ""+i + spouse[i].dob + "\n";
+	}
+	return displayString;
+}
+
+	
 //function filterTraitSearch (age, height, weight, occupation, eye color, pass)
 //	filter
 //}

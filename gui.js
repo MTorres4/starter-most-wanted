@@ -41,6 +41,7 @@ function mainMenu(onePerson, people){
 			//TODO: get person's info
 			break;
 		case "family":
+			displayPersonFamily(onePerson, people);
 			//TODO: get person's family
 			break;
 		case "descendants":
@@ -110,9 +111,6 @@ function searchByName(people){
 function selectingOnePerson(filterPersons){
 	var onePerson = prompt("Please choose one of the people below: \n" + (displayPeople(filterPersons)));
 	return filterPersons[parseInt(onePerson)];
-	//default:
-		//alert("Apologies, invalid entry. Please try your search again.");
-		//return app(people);
 }
 
 function displayPersonInfo(onePerson){
@@ -138,6 +136,26 @@ function displayPersonDescendants(onePerson, people){
 	} else{
 		alert("The search yielded no results, please try your search again");
 		return app(people);
+	}
+}
+
+function displayPersonFamily(onePerson, people){
+	var kids = findKids(onePerson, people);
+	var spouse = findSpouse(onePerson, people);
+	if (kids){
+		var listKids = convertToKids(kids);
+		if (spouse){
+			var listSpouse = convertToSpouse(spouse);
+			var family = "Their spouse is: \n" + listSpouse + "\n";
+			family += "Their kids include: \n" + listKids + "\n";
+			alert(family);
+		}else{ 
+			var family = "Their family includes: " + listSpouse + "\n";
+			alert(family);
+		}
+	}else{
+	alert("The search yielded no results, please try your search again");
+	return app(people);
 	}
 }
 

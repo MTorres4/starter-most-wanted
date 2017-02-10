@@ -14,12 +14,6 @@ var data = [
 		"currentSpouse": 401222887
 	},
 	{
-		"firstName": "Billy",
-		"lastName": "Bob",
-		"parents": [],
-		"dob": "2/26/1987",
-	},
-	{
 		"id": 401222887,
 		"firstName": "Uma",
 		"lastName": "Bob",

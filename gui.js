@@ -25,19 +25,17 @@ function app(people){
 }
 
 // Menu function to call once you find who you are looking for
-function mainMenu(filterPersons, people){
-
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-
-	if(filterPersons.length === 0){
+function mainMenu(onePerson, people){
+	if(onePerson.length === 0){
 		alert("Unfortunately, there was no one who matched those criteria, please try your search again.");
 		return app(people); // restart
-	}else if(filterPersons.length > 1){
-		displayPeople(filterPersons);
-	}else {
-		var displayOption = prompt("Found " + filterPersons[0].firstName + " " + filterPersons[0].lastName + " . Type: 'info', 'family', or 'descendants' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
-	}
-	switch(displayOption){
+	}else if(onePerson.length > 1){
+		var filterPersons = onePerson;
+		var onePerson = selectingOnePerson(filterPersons);
+		var displayOption = prompt("Found " + onePerson.firstName + " " + onePerson.lastName + " . Type: 'info', 'descendants', or 'family' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
+	}else (onePerson.length === 1);{//is it because the person goes to 1???
+		var displayOption = prompt("Found " + onePerson[0].firstName + " " + onePerson[0].lastName + " . Type: 'info', 'descendants', or 'family' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
+	}switch(displayOption){
 		case "info":
 			displayPersonInfo(filterPersons);
 			//TODO: get person's info
@@ -46,6 +44,7 @@ function mainMenu(filterPersons, people){
 			//TODO: get person's family
 			break;
 		case "descendants":
+			displayPersonDescendants(onePerson, people);
 			// TODO: get person's descendants
 			break;
 		case "restart":
@@ -55,8 +54,8 @@ function mainMenu(filterPersons, people){
 			return; // stop execution
 		default:
 			alert("Apologies, invalid entry. Please check spelling and type from one of the following five options.");
-			return mainMenu(filterPersons, people); // ask again
-	}
+			return mainMenu(onePerson, people); // ask again
+		}
 }
 
 function searchByName(people){
@@ -107,36 +106,39 @@ function searchByName(people){
 //}
 
 // alerts a list of people
-function displayPeople(filterPersons){
-  alert(people.map(function(filterPersons){
-    return filterPersons.firstName + " " + filterPersons.lastName;
-  }).join("\n"));
+
+function selectingOnePerson(filterPersons){
+	var onePerson = prompt("Please choose one of the people below: \n" + (displayPeople(filterPersons)));
+	return filterPersons[parseInt(onePerson)];
+	//default:
+		//alert("Apologies, invalid entry. Please try your search again.");
+		//return app(people);
 }
 
-function displayPersonInfo(filterPersons){
+function displayPersonInfo(onePerson){
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
-  var age = convertToAge(filterPersons);
-  var personInfo = "First Name: " + filterPersons[0].firstName + "\n";
-  personInfo += "Last Name: " + filterPersons[0].lastName + "\n";
-  personInfo += "Height: " + filterPersons[0].height + " inches \n";
-  personInfo += "Weight: " + filterPersons[0].weight +  "  pounds \n";
+  var age = convertToAge(onePerson);
+  var personInfo = "First Name: " + onePerson[0].firstName + "\n";
+  personInfo += "Last Name: " + onePerson[0].lastName + "\n";
+  personInfo += "Height: " + onePerson[0].height + " inches \n";
+  personInfo += "Weight: " + onePerson[0].weight +  "  pounds \n";
   personInfo += "Age: " + age + "\n";
-  personInfo += "Occupation: " + filterPersons[0].occupation + "\n";
-  personInfo += "Eye Color: " + filterPersons[0].eyeColor + "\n";
+  personInfo += "Occupation: " + onePerson[0].occupation + "\n";
+  personInfo += "Eye Color: " + onePerson[0].eyeColor + "\n";
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
 
-function displayPersonDescendants(){
-	if (anyMatch > 1){
-		var descendants = findDescendants(filterPersons, people);
-		var personDescendants = "First Name: " + filterPersons[].firstName + "\n";
-		personDescendants = "First Name: " + filterPersons[].firstName + "\n";
+function displayPersonDescendants(onePerson, people){
+	var descendants = findDescendants(onePerson, people);
+	if(descendants.length > 0){
+		var personDescendants = "First Name: " + [].firstName + "\n";
+		personDescendants = "Last Name: " + [].lastName + "\n";
 		alert(personDescendants);
-	} else (anyMatch === 0){
+	} else(descendants.length === 0);{
 		alert("The search yielded no results, please try your search again");
-		return mainMenu(filterPersons, people);
+		return mainMenu(onePerson, people);
 	}
 }
 

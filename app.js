@@ -20,8 +20,18 @@ function compareByName(firstName, lastName, people){
 	//}
 //}
 
-function convertToAge(filterPersons){
-	var age = filterPersons.map(function (el){
+function displayPeople(filterPersons){
+	var displayString = "";
+	for(var i = 0; i < filterPersons.length; i++){
+	displayString += ""+i + filterPersons[i].firstName + "\n";
+	displayString += ""+i + filterPersons[i].lastName + "\n";
+	displayString += ""+i + filterPersons[i].dob + "\n";
+	}
+	return displayString;
+}
+
+function convertToAge(onePerson){
+	var age = onePerson.map(function (el){
 		var today = new Date();
 		var toAge = new Date(el.dob);
 		var age = today.getFullYear() - toAge.getFullYear();
@@ -30,15 +40,15 @@ function convertToAge(filterPersons){
 		return age;
 }
 
-function findDescendants(ancestor, people){
-	var anyMatch = people.filter(function (el){
-		if (ancestor.el.id === el.parents){
-			return anyMatch;
-		}else (ancestor.el.id !=){
-			return anyMatch [0];
-	}
+function findDescendants(filterPersons, people){
+	var descendants = people.filter(function (el){
+		if(el.parents.includes(filterPersons[0].id)){
+			return true;
+		}else {
+			return false;
+		}
+	});
 }
-
 
 //function filterTraitSearch (age, height, weight, occupation, eye color, pass)
 //	filter

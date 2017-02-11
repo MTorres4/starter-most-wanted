@@ -11,14 +11,6 @@ function compareByName(firstName, lastName, people){
 	return results;
 }
 
-//function getFamily(person, people){
-	//this.parents;
-	//this.currentSpouse;
-	//this.display = function(){
-		//return("Family: " + this.parents + " " + this.currentSpouse + "");
-	// return an array containing the family members (objects)
-	//}
-//}
 
 function displayPeople(filterPersons){
 	var displayString = "";
@@ -40,15 +32,19 @@ function convertToAge(onePerson){
 		return age;
 }
 
-function findDescendants(onePerson, people){
-	var descendants = people.filter(function (el){
-		if(el.parents.includes(onePerson[0].id)){
-			return true;
-		}else {
-			return false;
-		}
-	});
+function findDescendants(onePerson, people, descendants=[]){
+	var generation = people.filter(function (el){
+		if(onePerson.id === el.parents[0] || onePerson.id === el.parents[1]){
+		return true;
+		}else{
+		return false;
+	}
+})
+	descendants.push(...generation);
+	for(var i=0; i < descendants.length; i++){
+	findDescendants(descendants[i], people, descendants);
 	return descendants;
+	}
 }
 
 function convertToDescendants(descendants){
@@ -84,7 +80,6 @@ function convertToKids (kids){
 
 function findSpouse (onePerson, people){
 	var spouse = people.filter(function (el){
-		//if(el.currentSpouse.includes(onePerson[0].currentSpouse)){
 		if(onePerson[0].currentSpouse === el.id && el.currentSpouse === onePerson[0].id){
 			return true;
 		}else {

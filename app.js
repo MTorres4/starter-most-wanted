@@ -36,7 +36,9 @@ function findDescendants(onePerson, people, descendants=[]){
 	}
 })
 	descendants.push(...generation);
-	for(var i=0; i < descendants.length; i++){
+	if(generation.length === 0){
+		return descendants;
+	}for(var i=0; i < descendants.length; i++){
 	findDescendants(descendants[i], people, descendants);
 	return descendants;
 	}
@@ -94,7 +96,5 @@ function convertToSpouse (spouse){
 	return displayString;
 }
 
-
-//function filterTraitSearch (age, height, weight, occupation, eye color, pass)
-//	filter
-//}
+//function filterResults(trait.string.concat.length){
+	//var 

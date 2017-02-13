@@ -55,48 +55,7 @@ function searchByName(people){
   var lastName = promptFor("What is the person's last name?", chars);
   var results = compareByName(firstName, lastName, people);
   return results;
-
 }
-  // TODO: find matches using the name the user entered
-
-
-//function searchByTraits(people){//no matter what it will be 5 items: age, false, weight, false, false then take the true to be evaluated
-	//var 'pass' = false;
-	//var traitAge = promptFor("If you know the person's age, please type thier age as a number, if not, please type 'pass'");
-	//	if (traitAge = traitAgeNumber){//save to array
-	//		return traitAgeCorrect;
-	//	}if else (traitAge = 'pass'){ //goto traitHeight
-	//		return false;
-	//var traitHeight = promptFor("If you know the person's height, please type their height (inches) as a number, if not, please type 'pass'");
-	//	}if (traitHeight = 0){//save to array
-	//		return traitHeightCorrect;
-	//	}if else (traitHeight = 'pass'){ //save to array
-	//		return false;
-	//var traitWeight = promptFor("If you know the person's weight, please type their weight (pounds) as a number, if not, please type 'pass'");
-	//	}if (traitWeight = 0){//save to array
-	//		return traitWeightCorrect;
-	//	}if else (traitWeight = 'pass'){ //goto traitOccupation
-	//		return false;
-	//var traitOccupation = promptFor("If you know the person's occupation, please type their occupation, if not, please type 'pass'");
-	//	}if (traitOccupation = 0){//save to array
-	//		return traitOccupationCorrect;
-	//	}if else (traitOccupation = 'pass'){ //goto traitEyecolor
-	//		return false;
-	//var traitEyecolor = promptFor("If you know the person's eye color, please type their eye color, if not please type 'pass'");
-	//	}if (traitEyecolor = 0){//save to array
-	//		return traitEyecolorCorrect;
-	//	}if else (traitEyecolor = 'pass'){ //goto enter5Pass
-	//		return enter5Pass;
-	//} return string.concat( 
-//}
-	
-	
-//function enter5Pass(){
-	//default: 
-	//app(people);
-	//break;
-//}
-
 
 function selectingOnePerson(filterPersons){
 	var onePerson = prompt("Please choose one of the people below: \n" + (displayPeople(filterPersons)));
@@ -146,33 +105,43 @@ function displayPersonFamily(onePerson, people){
 	}
 }
 
-//function traitAgeNumber(input){
-	//if (input.isInteger && input > 0(traitAge)){
-	//	return traitAgeCorrect;
-	//} if else () {
-	//	alert("Please enter a number for age or type 'pass'.");
-	//	return 
-	//if not, restart the Age prompt
+//function searchByTraits(people){
+	//var 'pass' = null;
+	//var traits.string.concat = ["traitAgeNumber", "traitHeightNumber", "traitWeightNumber", "traitOccupationCorrect", "traitEyecolorCorrect",];
+	//var traitAge = promptFor("If you know the person's age, please type thier age as a number, if not, please type 'pass'");
+		//if (traitAge = traitAgeNumber){
+			//return traitAgeNumber;
+		//}if else (traitAge = 'pass'){
+			//return null;
+	//var traitHeight = promptFor("If you know the person's height, please type their height (inches) as a number, if not, please type 'pass'");
+		//}if (traitHeight = 0){
+			//return traitHeightNumber;
+		//}if else (traitHeight = 'pass'){
+			//return null;
+	//var traitWeight = promptFor("If you know the person's weight, please type their weight (pounds) as a number, if not, please type 'pass'");
+		//}if (traitWeight = 0){
+			//return traitWeightNumber;
+		//}if else (traitWeight = 'pass'){
+			//return null;
+	//var traitOccupation = promptFor("If you know the person's occupation, please type their occupation, if not, please type 'pass'");
+		//}if (traitOccupation = 0){
+			//return traitOccupationCorrect;
+		//}if else (traitOccupation = 'pass'){
+			//return null;
+	//var traitEyecolor = promptFor("If you know the person's eye color, please type their eye color, if not please type 'pass'");
+		//}if (traitEyecolor = 0){
+			//return traitEyecolorCorrect;
+		//}if else (traitEyecolor = 'pass'){
+			//return null;
+	//} return traits.string.concat;
 //}
 
-//function traitHeightNumber(input){
-	//return input.isInteger && input > 0(traitHeight);
-	//if not, restart the Height prompt
-//}
-
-//function traitWeightNumber(input){
-	//return input.isInteger && input > 0(traitWeight);
-	//if not, restart the Weight prompt
-//}
-
-//function traitOccupationString(input){
-	//return input.toString.toLowerCase();
-	//if not, restart the Occupation prompt
-//}
-
-//function traitEyeColorString(input){
-	//return input.toString.toLowerCase();
-	//if not, restart the Eye Color prompt
+//function trait(trait.string.concat)
+	//if(trait.string.concat.length === 0){
+		//alert("Please enter at least one of the searchable traits, please try your search again.")'
+		//return app(people);
+	//}else if(trait.string.concat.length > 1){
+		//var showResults = filterTraits(trait.string.concat.length);	
 //}
 
 function promptFor(question, valid){

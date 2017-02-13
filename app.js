@@ -27,18 +27,33 @@ function convertToAge(onePerson){
 		return age;
 }
 
-function findDescendants(onePerson, people, descendants=[]){
-	var kids = people.filter(function (el){
-		return onePerson.id === el.parents[0] || onePerson.id === el.parents[1];
-	)};
-	descendants.push(...kids);
-	if(kids.length > 0){
-		return descendants;
-	}for(var i=0; i < kids.length; i++){
-		descendants.push(...findDescendants(...kids[i], people));
-	}
-	return descendants;
-}
+//function findDescendants(onePerson, people, descendants=[]){
+	//var kids = people.filter(function (el){
+		//return onePerson.id === el.parents[0] || onePerson.id === el.parents[1];
+	//)};
+	//descendants.push(...kids);
+	//if(kids.length > 0){
+		//return descendants;
+	//}for(var i=0; i < kids.length; i++){
+		//descendants.push(...findDescendants(...kids[i], people));
+	//}
+	//return descendants;
+//}
+
+//function findDescendants(onePerson, people, descendants=[]){
+	//var kids = people.filter(function(el){
+		//if(onePerson.id === el.parents[0] || onePerson.id === el.parents[1]){
+			//return true;
+		//}else{
+			//return false;
+		//}
+	//});
+	//descendants.push(...kids);
+	//if(kids.length > 0){
+		//return descendants;
+	//}for (var i=0; i < kids[i], people, descendants);
+	//return descendants;
+//}
 
 function convertToDescendants(descendants){
 	var displayString = "";
@@ -92,7 +107,7 @@ function convertToSpouse (spouse){
 	return displayString;
 }
 
-function searchByTraits(people, occupation, eyeColor, age, height, weight){
+function filterByTraits(people, occupation, eyeColor, age, height, weight){
 	return people.filter(function(el){
 		if(occupation && occupation!= el.occupation){
 			return false;

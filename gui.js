@@ -8,7 +8,8 @@ function app(people){
       break;
     case 'no':
 		alert("The following prompts will ask if you know any information regarding the person from the following traits: age, height, weight, occupation, and/or eye color. At least one trait should be entered, or the search will return to the beginning of the application.");
-		searchByTraits(people);
+		var filterPersons = searchByTraits(people);
+		mainMenu(filterPersons, people);
       break;
     default:
       app(people);

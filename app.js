@@ -1,8 +1,4 @@
 "Use strict";
-/*
-  Build all of your functions for the application below.
-	Some functions have been stubbed out.
-*/
 
 function compareByName(firstName, lastName, people){
 	var results = people.filter(function (el){
@@ -10,7 +6,6 @@ function compareByName(firstName, lastName, people){
 	});
 	return results;
 }
-
 
 function displayPeople(filterPersons){
 	var displayString = "";
@@ -25,7 +20,7 @@ function displayPeople(filterPersons){
 function convertToAge(onePerson){
 	var age = onePerson
 	var today = new Date();
-	var toAge = new Date(onePerson.dob);
+	var toAge = new Date(onePerson[0].dob);
 	if (age = today.getFullYear() - toAge.getFullYear()){
 	return Math.abs(today.getFullYear() - toAge.getFullYear(onePerson.dob));
 	}
@@ -99,9 +94,7 @@ function convertToSpouse (spouse){
 	return displayString;
 }
 
-	
+
 //function filterTraitSearch (age, height, weight, occupation, eye color, pass)
 //	filter
 //}
-
-

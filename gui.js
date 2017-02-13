@@ -1,17 +1,10 @@
 "use strict";
-//arrays use numbered indexes. objects use named indexes. 
-/*
-  Build all of your functions for displaying and gathering information below (GUI).
-*/
-
-// app is the function called to start the entire application
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
 	case 'yes':
 		var filterPersons = searchByName(people);
 		mainMenu(filterPersons, people);
-      // TODO: search by name
       break;
     case 'no':
 		alert("The following prompts will ask if you know any information regarding the person from the following traits: age, height, weight, occupation, and/or eye color. At least one trait should be entered, or the search will return to the beginning of the application.");
@@ -19,16 +12,15 @@ function app(people){
       // TODO: search by traits
       break;
     default:
-      app(people); // restart app
+      app(people);
       break;
   }
 }
 
-// Menu function to call once you find who you are looking for
 function mainMenu(onePerson, people){
 	if(onePerson.length === 0){
-		alert("Unfortunately, there was no one who matched those criteria, please try your search again.");
-		return app(people); // restart
+		alert("Unfortunately, there was no one who matched those criteria, please try your search again. \n Please ensure the first and last name were capitalized, ex. John Doe.");
+		return app(people);
 	}else if(onePerson.length > 1){
 		var filterPersons = onePerson;
 		var onePerson = selectingOnePerson(filterPersons);
@@ -38,24 +30,23 @@ function mainMenu(onePerson, people){
 	}switch(displayOption){
 		case "info":
 			displayPersonInfo(onePerson);
-			//TODO: get person's info
 			break;
 		case "family":
 			displayPersonFamily(onePerson, people);
-			//TODO: get person's family
 			break;
 		case "descendants":
 			displayPersonDescendants(onePerson, people);
 			// TODO: get person's descendants
 			break;
 		case "restart":
-			app(people); // restart
+			app(people);
 			break;
 		case "quit":
-			return; // stop execution
+			app(people);
+			return;
 		default:
 			alert("Apologies, invalid entry. Please check spelling and type from one of the following five options.");
-			return mainMenu(onePerson, people); // ask again
+			return mainMenu(onePerson, people);
 		}
 }
 
@@ -106,7 +97,6 @@ function searchByName(people){
 	//break;
 //}
 
-// alerts a list of people
 
 function selectingOnePerson(filterPersons){
 	var onePerson = prompt("Please choose one of the people below: \n" + (displayPeople(filterPersons)));
@@ -114,17 +104,14 @@ function selectingOnePerson(filterPersons){
 }
 
 function displayPersonInfo(onePerson){
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
   var age = convertToAge(onePerson);
-  var personInfo = "First Name: " + onePerson.firstName + "\n";
-  personInfo += "Last Name: " + onePerson.lastName + "\n";
-  personInfo += "Height: " + onePerson.height + " inches \n";
-  personInfo += "Weight: " + onePerson.weight +  "  pounds \n";
+  var personInfo = "First Name: " + onePerson[0].firstName + "\n";
+  personInfo += "Last Name: " + onePerson[0].lastName + "\n";
+  personInfo += "Height: " + onePerson[0].height + " inches \n";
+  personInfo += "Weight: " + onePerson[0].weight +  "  pounds \n";
   personInfo += "Age: " + age + "\n";
-  personInfo += "Occupation: " + onePerson.occupation + "\n";
-  personInfo += "Eye Color: " + onePerson.eyeColor + "\n";
-  // TODO: finish getting the rest of the information to display
+  personInfo += "Occupation: " + onePerson[0].occupation + "\n";
+  personInfo += "Eye Color: " + onePerson[0].eyeColor + "\n";
   alert(personInfo);
 }
 
@@ -188,7 +175,6 @@ function displayPersonFamily(onePerson, people){
 	//if not, restart the Eye Color prompt
 //}
 
-// function that prompts and validates user input
 function promptFor(question, valid){
 	do{
     var response = prompt(question).trim();
@@ -196,13 +182,10 @@ function promptFor(question, valid){
   return response;
 }
 
-// helper function to pass into promptFor to validate yes/no answers
 function yesNo(input){
   return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
 }
 
-
-// helper function to pass in as default promptFor validation
 function chars(input){
-  return true; // default validation only
+  return true;
 }

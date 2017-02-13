@@ -28,20 +28,16 @@ function convertToAge(onePerson){
 }
 
 function findDescendants(onePerson, people, descendants=[]){
-	var generation = people.filter(function (el){
-		if(onePerson.id === el.parents[0] || onePerson.id === el.parents[1]){
-		return true;
-		}else{
-		return false;
-	}
-})
-	descendants.push(...generation);
-	if(generation.length === 0){
+	var kids = people.filter(function (el){
+		return onePerson.id === el.parents[0] || onePerson.id === el.parents[1];
+	)};
+	descendants.push(...kids);
+	if(kids.length > 0){
 		return descendants;
-	}for(var i=0; i < descendants.length; i++){
-	findDescendants(descendants[i], people, descendants);
-	return descendants;
+	}for(var i=0; i < kids.length; i++){
+		descendants.push(...findDescendants(...kids[i], people));
 	}
+	return descendants;
 }
 
 function convertToDescendants(descendants){
@@ -96,5 +92,33 @@ function convertToSpouse (spouse){
 	return displayString;
 }
 
-//function filterResults(trait.string.concat.length){
-	//var 
+function searchByTraits(people, occupation, eyeColor, age, height, weight){
+	return people.filter(function(el){
+		if(occupation && occupation!= el.occupation){
+			return false;
+		}
+		if(eyeColor && eye!= el.eyeColor){
+			return false;
+		}
+		if(age && age!= convertAge(el.dob)){
+			return false;
+		}
+		if(height && height!= el.height){
+			return false;
+		}
+		if(weight && weight!= el.weight){
+			return false;
+		}
+			return true;
+	});
+}
+
+function convertAge(people){
+	var age = people;
+	var today = new Date();
+	var toAge = new Date(people.dob);
+	if(age = today.getFullYear() - toAge.getFullYear()){
+	return Math.abs(today.getFullYear() - toAge.getFullYear(people.dob));
+	}
+	return age;
+}

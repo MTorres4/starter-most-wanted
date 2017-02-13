@@ -8,8 +8,7 @@ function app(people){
       break;
     case 'no':
 		alert("The following prompts will ask if you know any information regarding the person from the following traits: age, height, weight, occupation, and/or eye color. At least one trait should be entered, or the search will return to the beginning of the application.");
-		var people = searchByTraits(people);
-      // TODO: search by traits
+		searchByTraits(people);
       break;
     default:
       app(people);
@@ -41,11 +40,9 @@ function mainMenu(onePerson, people){
 			app(people);
 			break;
 		case "quit":
-			app(people);
 			return;
 		default:
 			alert("Apologies, invalid entry. Please check spelling and type from one of the following five options.");
-			return mainMenu(onePerson, people);
 		}
 }
 
@@ -104,44 +101,15 @@ function displayPersonFamily(onePerson, people){
 	}
 }
 
-//function searchByTraits(people){
-	//var 'pass' = null;
-	//var traits.string.concat = ["traitAgeNumber", "traitHeightNumber", "traitWeightNumber", "traitOccupationCorrect", "traitEyecolorCorrect",];
-	//var traitAge = promptFor("If you know the person's age, please type thier age as a number, if not, please type 'pass'");
-		//if (traitAge = traitAgeNumber){
-			//return traitAgeNumber;
-		//}if else (traitAge = 'pass'){
-			//return null;
-	//var traitHeight = promptFor("If you know the person's height, please type their height (inches) as a number, if not, please type 'pass'");
-		//}if (traitHeight = 0){
-			//return traitHeightNumber;
-		//}if else (traitHeight = 'pass'){
-			//return null;
-	//var traitWeight = promptFor("If you know the person's weight, please type their weight (pounds) as a number, if not, please type 'pass'");
-		//}if (traitWeight = 0){
-			//return traitWeightNumber;
-		//}if else (traitWeight = 'pass'){
-			//return null;
-	//var traitOccupation = promptFor("If you know the person's occupation, please type their occupation, if not, please type 'pass'");
-		//}if (traitOccupation = 0){
-			//return traitOccupationCorrect;
-		//}if else (traitOccupation = 'pass'){
-			//return null;
-	//var traitEyecolor = promptFor("If you know the person's eye color, please type their eye color, if not please type 'pass'");
-		//}if (traitEyecolor = 0){
-			//return traitEyecolorCorrect;
-		//}if else (traitEyecolor = 'pass'){
-			//return null;
-	//} return traits.string.concat;
-//}
-
-//function trait(trait.string.concat)
-	//if(trait.string.concat.length === 0){
-		//alert("Please enter at least one of the searchable traits, please try your search again.")'
-		//return app(people);
-	//}else if(trait.string.concat.length > 1){
-		//var showResults = filterTraits(trait.string.concat.length);	
-//}
+function searchByTraits(people){
+	var occupation = promptFor("Please enter thier occupation, or leave blank to skip", chars).trim().toLowerCase();
+	var eyeColor = promptFor("Please enter their eye color, or leave blank to skip", chars).trim().toLowerCase();
+	var age = promptFor("Please enter their age, or leave blank to skip", chars).trim().toLowerCase();
+	var height = promptFor("Please enter their height in inches, or leave blank to skip", chars).trim().toLowerCase();
+	var weight = promptFor("Please enter their weight in pounds, or leave blank to skip", chars).trim().toLowerCase();
+	filterByTraits(people, occupation, eyeColor, age, height, weight);
+MainMenu(onePerson, people);
+}
 
 function promptFor(question, valid){
 	do{

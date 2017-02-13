@@ -36,7 +36,6 @@ function mainMenu(onePerson, people){
 			break;
 		case "descendants":
 			displayPersonDescendants(onePerson, people);
-			// TODO: get person's descendants
 			break;
 		case "restart":
 			app(people);

@@ -3,13 +3,16 @@ function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
 	case 'yes':
-		var filterPersons = searchByName(people);
-		mainMenu(filterPersons, people);
+		var availableMatch = searchByName(people);
+		var onePerson = determineIfMatchExists(availableMatch, people);
+		mainMenu(onePerson, people);
       break;
     case 'no':
 		alert("The following prompts will ask if you know any information regarding the person from the following traits: age, height, weight, occupation, and/or eye color. At least one trait should be entered, or the search will return to the beginning of the application.");
-		var filterPersons = searchByTraits(people);
-		mainMenu(filterPersons, people);
+		var availableMatch = searchByTraits(people);
+		determineIfMatchExists(availableMatch, people);
+		// var filterPersons = searchByTraits(people);
+		// mainMenu(filterPersons, people);
       break;
     default:
       app(people);
@@ -17,17 +20,39 @@ function app(people){
   }
 }
 
+// function mainMenu(onePerson, people){
+	// if(onePerson.length === 0){
+		// alert("Unfortunately, there was no one who matched those criteria, please try your search again. \n Please ensure the first and last name were capitalized, ex. John Doe.");
+		// return app(people);
+	// }else if(onePerson.length > 1){
+		// var filterPersons = onePerson;
+		// var onePerson = selectingOnePerson(filterPersons);
+		// var displayOption = prompt("Found " + onePerson.firstName + " " + onePerson.lastName + " . Type: 'info', 'descendants', or 'family' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
+	// }else{
+		// var displayOption = prompt("Found " + onePerson[0].firstName + " " + onePerson[0].lastName + " . Type: 'info', 'descendants', or 'family' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
+	// }switch(displayOption){
+		// case "info":
+			// displayPersonInfo(onePerson);
+			// break;
+		// case "family":
+			// displayPersonFamily(onePerson, people);
+			// break;
+		// case "descendants":
+			// displayPersonDescendants(onePerson, people);
+			// break;
+		// case "restart":
+			// app(people);
+			// break;
+		// case "quit":
+			// return;
+		// default:
+			// alert("Apologies, invalid entry. Please check spelling and type from one of the following five options.");
+		// }
+// }
+
 function mainMenu(onePerson, people){
-	if(onePerson.length === 0){
-		alert("Unfortunately, there was no one who matched those criteria, please try your search again. \n Please ensure the first and last name were capitalized, ex. John Doe.");
-		return app(people);
-	}else if(onePerson.length > 1){
-		var filterPersons = onePerson;
-		var onePerson = selectingOnePerson(filterPersons);
-		var displayOption = prompt("Found " + onePerson.firstName + " " + onePerson.lastName + " . Type: 'info', 'descendants', or 'family' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
-	}else{
-		var displayOption = prompt("Found " + onePerson[0].firstName + " " + onePerson[0].lastName + " . Type: 'info', 'descendants', or 'family' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
-	}switch(displayOption){
+	var displayOption = prompt("For " + onePerson.firstName + " " + onePerson.lastName + " . Type: 'info', 'descendants', or 'family' for additional demographics; or type 'restart' to start the seach over or type 'quit' to exit the application.");
+	switch(displayOption){
 		case "info":
 			displayPersonInfo(onePerson);
 			break;
@@ -45,6 +70,19 @@ function mainMenu(onePerson, people){
 		default:
 			alert("Apologies, invalid entry. Please check spelling and type from one of the following five options.");
 		}
+}
+
+function determineIfMatchExists(availableMatch, people){
+	if(availableMatch == 0){
+		alert("Unfortunately, there was no one who matched those criteria, please try your search again. \n Please ensure the first and last name are capitalized, ex. John Doe");
+		return app(people);
+	}else if(availableMatch.length >= 1){
+		var filterPersons = availableMatch;
+		var availableMatch = selectingOnePerson(filterPersons);
+		return availableMatch;
+	}else{
+		return availableMatch;
+	}
 }
 
 function searchByName(people){
@@ -103,13 +141,15 @@ function displayPersonFamily(onePerson, people){
 }
 
 function searchByTraits(people){
-	var occupation = promptFor("Please enter thier occupation, or leave blank to skip", chars).trim().toLowerCase();
-	var eyeColor = promptFor("Please enter their eye color, or leave blank to skip", chars).trim().toLowerCase();
-	var age = promptFor("Please enter their age, or leave blank to skip", chars).trim().toLowerCase();
-	var height = promptFor("Please enter their height in inches, or leave blank to skip", chars).trim().toLowerCase();
-	var weight = promptFor("Please enter their weight in pounds, or leave blank to skip", chars).trim().toLowerCase();
-	filterByTraits(people, occupation, eyeColor, age, height, weight);
-MainMenu(onePerson, people);
+	var occupation = prompt("Please enter thier occupation, or press spacebar to skip").trim().toLowerCase();
+	var eyeColor = prompt("Please enter their eye color, or press spacebar to skip").trim().toLowerCase();
+	var age = prompt("Please enter their age, or press spacebar to skip").trim().toLowerCase();
+	var height = prompt("Please enter their height in inches, or press spacebar to skip").trim().toLowerCase();
+	var weight = prompt("Please enter their weight in pounds, or press spacebar to skip").trim().toLowerCase();
+	//var traits = [];
+	confirmInputForFilter(occupation, eyeColor, age, height, weight); //New function to see if anything is entered
+	//filterByTraits(people, occupation, eyeColor, age, height, weight);
+//MainMenu(onePerson, people);
 }
 
 function promptFor(question, valid){

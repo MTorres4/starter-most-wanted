@@ -14,6 +14,19 @@ var data = [
 		"currentSpouse": 401222887
 	},
 	{
+		"id": 563940220,
+		"firstName": "Billy",
+		"lastName": "Bob",
+		"gender": "male",
+		"dob": "9/2/1954",
+		"height": 75,
+		"weight": 155,
+		"eyeColor": "brown",
+		"occupation": "sky-diver",
+		"parents": [],
+		"currentSpouse": null
+	},
+	{
 		"id": 401222887,
 		"firstName": "Uma",
 		"lastName": "Bob",

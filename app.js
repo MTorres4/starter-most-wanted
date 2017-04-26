@@ -107,6 +107,28 @@ function convertToSpouse (spouse){
 	return displayString;
 }
 
+function confirmInputForFilter(occupation, eyeColor, age, height, weight){
+	var criteria = [0];
+	if(occupation === null){
+		return false;
+	}
+	if(eyeColor === null){
+		return false;
+	}
+	if(age === null){
+		return false;
+	}
+	if(height === null){
+		return false;
+	}
+	if(weight === null){
+		return false;
+	}
+	else{
+		criteria.push();
+	}
+}
+
 function filterByTraits(people, occupation, eyeColor, age, height, weight){
 	return people.filter(function(el){
 		if(occupation && occupation!= el.occupation){

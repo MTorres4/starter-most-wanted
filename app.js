@@ -108,7 +108,7 @@ function convertToSpouse (spouse){
 }
 
 function confirmInputForFilter(occupation, eyeColor, age, height, weight){
-	var criteria = [0];
+	var criteria = [];
 	if(occupation === null){
 		return false;
 	}

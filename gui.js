@@ -9,7 +9,7 @@ function app(people){
       break;
     case 'no':
 		alert("The following prompts will ask if you know any information regarding the person from the following traits: age, height, weight, occupation, and/or eye color. At least one trait should be entered, or the search will return to the beginning of the application.");
-		var availableMatch = searchByTraits(people);
+		var availableMatch = searchByTraits();
 		determineIfMatchExists(availableMatch, people);
 		// var filterPersons = searchByTraits(people);
 		// mainMenu(filterPersons, people);
@@ -76,7 +76,10 @@ function determineIfMatchExists(availableMatch, people){
 	if(availableMatch == 0){
 		alert("Unfortunately, there was no one who matched those criteria, please try your search again. \n Please ensure the first and last name are capitalized, ex. John Doe");
 		return app(people);
-	}else if(availableMatch.length >= 1){
+	}else if(availableMatch == null){
+		alert("Unfortunately, additional security authorization is needed to see all of the results in our database. \n Please enter at least one trait to filter by");
+		return searchByTraits();
+	}else if(availableMatch >= 1){
 		var filterPersons = availableMatch;
 		var availableMatch = selectingOnePerson(filterPersons);
 		return availableMatch;
@@ -140,12 +143,12 @@ function displayPersonFamily(onePerson, people){
 	}
 }
 
-function searchByTraits(people){
-	var occupation = prompt("Please enter thier occupation, or press spacebar to skip").trim().toLowerCase();
-	var eyeColor = prompt("Please enter their eye color, or press spacebar to skip").trim().toLowerCase();
-	var age = prompt("Please enter their age, or press spacebar to skip").trim().toLowerCase();
-	var height = prompt("Please enter their height in inches, or press spacebar to skip").trim().toLowerCase();
-	var weight = prompt("Please enter their weight in pounds, or press spacebar to skip").trim().toLowerCase();
+function searchByTraits(){
+	var occupation = prompt("Please enter thier occupation, or press 'OK' to skip").trim().toLowerCase();
+	var eyeColor = prompt("Please enter their eye color, or press 'OK' to skip").trim().toLowerCase();
+	var age = prompt("Please enter their age, or press 'OK' to skip").trim().toLowerCase();
+	var height = prompt("Please enter their height in inches, or 'OK' to skip").trim().toLowerCase();
+	var weight = prompt("Please enter their weight in pounds, or press 'OK' to skip").trim().toLowerCase();
 	//var traits = [];
 	confirmInputForFilter(occupation, eyeColor, age, height, weight); //New function to see if anything is entered
 	//filterByTraits(people, occupation, eyeColor, age, height, weight);
